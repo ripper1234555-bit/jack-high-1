@@ -1,0 +1,23 @@
+{
+  "name": "yap-clubbing-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "YAP — a city-wide meetup board for verified college students to plan nights out together.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.13"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
