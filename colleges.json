@@ -1,0 +1,18 @@
+{
+  "_readme": "Add or edit cities and colleges here. 'domain' is the part of a student's email after the @ — signup checks that the email matches the chosen college. These sample names/domains are placeholders: replace them with the real colleges you want to allow before going live.",
+
+  "Mumbai": [
+    { "name": "Mumbai Institute of Technology", "domain": "mit-mumbai.edu.in" },
+    { "name": "St. Xavier's College", "domain": "xaviers.edu" },
+    { "name": "Narsee Monjee College of Commerce", "domain": "nmcollege.edu.in" }
+  ],
+  "Delhi": [
+    { "name": "Delhi School of Arts", "domain": "dsa.ac.in" },
+    { "name": "Hindu College", "domain": "hinducollege.ac.in" },
+    { "name": "Jamia Millia Islamia", "domain": "jmi.ac.in" }
+  ],
+  "Bangalore": [
+    { "name": "Christ University", "domain": "christuniversity.in" },
+    { "name": "Bangalore Institute of Technology", "domain": "bit-bangalore.edu.in" }
+  ]
+}
