@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YAP — find your plus-one for tonight</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="toast" class="toast hidden"></div>
+
+<!-- LANDING -->
+<section id="screen-landing" class="screen active">
+  <div class="auth-wrap center">
+    <div class="eyebrow">city guest list · 18–24 · verified students</div>
+    <h1 class="logo-xl">YAP</h1>
+    <p class="lede">Going out tonight but your crew bailed? Drop a ticket. Someone from another college across town is already heading there too.</p>
+    <div class="stack-sm" id="landing-buttons"></div>
+
+    <div class="ticket-mini">
+      <div class="ticket-mini-main">
+        <div class="mono small muted">tonight</div>
+        <div class="display">Looking for 2 more</div>
+        <div class="small muted">📍 Aurora Rooftop</div>
+      </div>
+      <div class="ticket-mini-divider"></div>
+      <div class="ticket-mini-side">✨</div>
+    </div>
+
+    <p class="fine-print">Open only to students at partner colleges, verified by college email. Every plan is reviewed by its host before anyone's confirmed — meet in public, and tell a friend where you're headed.</p>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section id="screen-signup" class="screen">
+  <div class="auth-wrap">
+    <button class="back-btn" data-back="landing">← Back</button>
+    <h2 class="display">Get on the list</h2>
+    <p class="muted">Verified students only — one college email, one pass.</p>
+    <form id="form-signup" class="card form">
+      <label class="field-label">Full name</label>
+      <input class="input" id="su-name" placeholder="Riya Shah" />
+
+      <label class="field-label">City</label>
+      <select class="input" id="su-city"><option value="">Select your city</option></select>
+
+      <label class="field-label">College</label>
+      <select class="input" id="su-college"><option value="">Select a city first</option></select>
+
+      <label class="field-label">Age</label>
+      <input class="input" id="su-age" type="number" min="18" max="24" placeholder="20" />
+
+      <label class="field-label">College email</label>
+      <input class="input" id="su-email" type="email" placeholder="you@college.edu" />
+
+      <label class="field-label">Password</label>
+      <input class="input" id="su-password" type="password" placeholder="At least 8 characters" />
+
+      <label class="field-label">Confirm password</label>
+      <input class="input" id="su-confirm" type="password" placeholder="Type it again" />
+
+      <div class="error" id="su-error"></div>
+      <button class="btn-primary" type="submit">Send verification code →</button>
+    </form>
+  </div>
+</section>
+
+<!-- VERIFY -->
+<section id="screen-verify" class="screen">
+  <div class="auth-wrap">
+    <button class="back-btn" data-back="signup">← Back</button>
+    <h2 class="display">Check your email</h2>
+    <p class="muted" id="verify-subtitle"></p>
+    <div class="card">
+      <div class="demo-banner">🛡️ Demo mode — if you haven't set up email in <span class="mono">.env</span>, the code is printed to your server's terminal instead of being emailed. Check there.</div>
+      <form id="form-verify" class="form">
+        <label class="field-label">Enter the 6-digit code</label>
+        <input class="input mono code-input" id="vf-code" maxlength="6" placeholder="000000" />
+        <div class="error" id="vf-error"></div>
+        <button class="btn-primary" type="submit">Verify & enter ✓</button>
+        <button class="btn-ghost" type="button" id="vf-resend">↻ Resend code</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<section id="screen-login" class="screen">
+  <div class="auth-wrap">
+    <button class="back-btn" data-back="landing">← Back</button>
+    <h2 class="display">Welcome back</h2>
+    <p class="muted">Log in with your college email.</p>
+    <form id="form-login" class="card form">
+      <label class="field-label">College email</label>
+      <input class="input" id="li-email" type="email" />
+      <label class="field-label">Password</label>
+      <input class="input" id="li-password" type="password" placeholder="••••••••" />
+      <div class="error" id="li-error"></div>
+      <button class="btn-primary" type="submit">Log in →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FEED -->
+<section id="screen-feed" class="screen">
+  <div class="feed-wrap">
+    <div class="feed-header">
+      <div class="logo-sm">🎫 YAP</div>
+      <div class="row-sm">
+        <button class="icon-btn" id="btn-refresh" title="Refresh">↻</button>
+        <button class="icon-btn" id="btn-logout" title="Log out">⏏</button>
+      </div>
+    </div>
+    <div class="muted small" id="feed-whoami"></div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="board">Board</button>
+      <button class="tab" data-tab="community">Community</button>
+    </div>
+
+    <div id="tab-board">
+      <div class="feed-controls">
+        <label class="checkbox-label">
+          <input type="checkbox" id="chk-college-only" />
+          My college only
+        </label>
+        <button class="btn-primary slim" id="btn-newplan">+ New plan</button>
+      </div>
+      <div id="plans-list" class="stack"></div>
+    </div>
+
+    <div id="tab-community" class="hidden">
+      <div class="card community-stats" id="community-stats"></div>
+      <div id="community-members" class="stack"></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW PLAN -->
+<section id="screen-newplan" class="screen">
+  <div class="auth-wrap">
+    <button class="back-btn" data-back="feed">← Back</button>
+    <h2 class="display">Drop a ticket</h2>
+    <p class="muted">Tell your city where you're headed.</p>
+    <form id="form-newplan" class="card form">
+      <label class="field-label">Place</label>
+      <input class="input" id="np-place" placeholder="Aurora Rooftop, Bandra" />
+
+      <div class="row-2">
+        <div>
+          <label class="field-label">Date</label>
+          <input class="input" id="np-date" type="date" />
+        </div>
+        <div>
+          <label class="field-label">Time</label>
+          <input class="input" id="np-time" type="time" />
+        </div>
+      </div>
+
+      <label class="field-label">Spots you're looking to fill</label>
+      <input class="input" id="np-spots" type="number" min="1" max="10" value="1" />
+
+      <label class="field-label">Note (optional)</label>
+      <textarea class="input" id="np-note" rows="3" placeholder="Meeting by the entrance, look for the red jacket."></textarea>
+
+      <div class="error" id="np-error"></div>
+      <button class="btn-primary" type="submit">+ Post it</button>
+    </form>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
